@@ -1,4 +1,4 @@
-def add_awgn(iq, snr_db):
+def add_awgn(iq, snr_db):  # sourcery skip: inline-immediately-returned-variable
     import numpy as np
     snr = 10**(snr_db/10)
     signal_power = np.mean([i**2 + q**2 for i, q in iq])
