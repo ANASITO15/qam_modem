@@ -27,4 +27,14 @@ document.getElementById('upload-form').addEventListener('submit', async function
   } else {
     alert('Simulation failed. Please try again.');
   }
+  imageElement.onload = () => {
+    console.log("Image loaded!");
+  };
+  imageElement.src = '/output_image.png?' + Date.now();
+  imageElement.onerror = () => {
+    console.error("Error loading image.");
+  };
+  imageElement.addEventListener('load', () => {
+    console.log("Image loaded successfully!");
+  });  
 });

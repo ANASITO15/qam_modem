@@ -51,7 +51,11 @@ def simulate():
 
     # Reconstruct image
     output_img = bits_to_image(received_bits[:len(bits)], size)
+    
+    print("Saving image as output_image.png in", os.getcwd())
     output_img.save("output_image.png")
+    print("Image saved.")
+    output_img.show()
 
     return jsonify({
         "snr": snr_values,
@@ -60,8 +64,9 @@ def simulate():
 
 
 @app.route('/output_image.png')
-def serve_image():
-    return send_file("output_image.png", mimetype='image/png')
+def get_output_image():
+    return send_file('output_image.png', mimetype='image/png')
+
 
 
 if __name__ == '__main__':
