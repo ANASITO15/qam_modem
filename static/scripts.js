@@ -16,25 +16,24 @@ document.getElementById('upload-form').addEventListener('submit', async function
   if (response.ok) {
     const data = await response.json();
 
-    // Plot the BER here if you want...
-
     // Show the output section
     document.getElementById('output-section').classList.remove('hidden');
 
-    // Set the image source to get the new image
+    // Set and monitor the image source
     const imageElement = document.getElementById('received-image');
-    imageElement.src = '/output_image.png?' + new Date().getTime(); // prevent caching
+    const cacheBuster = Date.now();
+    imageElement.src = '/output_image.png?' + cacheBuster;
+
+    imageElement.onload = () => {
+      console.log("Image loaded!");
+    };
+    imageElement.onerror = () => {
+      console.error("Error loading image.");
+    };
+    imageElement.addEventListener('load', () => {
+      console.log("Image loaded successfully!");
+    });
   } else {
     alert('Simulation failed. Please try again.');
   }
-  imageElement.onload = () => {
-    console.log("Image loaded!");
-  };
-  imageElement.src = '/output_image.png?' + Date.now();
-  imageElement.onerror = () => {
-    console.error("Error loading image.");
-  };
-  imageElement.addEventListener('load', () => {
-    console.log("Image loaded successfully!");
-  });  
 });

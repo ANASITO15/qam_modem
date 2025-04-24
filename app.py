@@ -63,9 +63,12 @@ def simulate():
     })
 
 
+from flask import send_file
+
 @app.route('/output_image.png')
-def get_output_image():
+def output_image():
     return send_file('output_image.png', mimetype='image/png')
+
 
 
 
