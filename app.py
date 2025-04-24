@@ -26,6 +26,7 @@ def simulate():
     if not file:
         return jsonify({"error": "No image uploaded"}), 400
 
+    print("File received:", file)
     filename = secure_filename(file.filename)
     filepath = os.path.join(UPLOAD_FOLDER, filename)
     file.save(filepath)
@@ -34,6 +35,7 @@ def simulate():
     iq_symbols = map_bits_to_iq(bits, modulation_order)
     snr_values = list(range(0, 21, 2))
     ber_list = []
+    received_bits = []  # Initialize once, outside the loop
 
     for snr in snr_values:
         noisy_iq = add_awgn(iq_symbols, snr)
@@ -41,10 +43,14 @@ def simulate():
 
         # Convert symbols back to bits
         bits_per_symbol = int(np.log2(modulation_order))
-        received_bits = []
         for s in symbols_rx:
-            b = format(int(s), f'0{bits_per_symbol}b')
-            received_bits.extend([int(bit) for bit in b])
+            print(f"Processing symbol: {s}")
+            try:
+                b = format(int(s), f'0{bits_per_symbol}b')
+                received_bits.extend([int(bit) for bit in b])
+            except ValueError:
+                print(f"Invalid symbol encountered: {s}")
+                continue
 
         ber = calculate_ber(bits[:len(received_bits)], received_bits)
         ber_list.append(ber)

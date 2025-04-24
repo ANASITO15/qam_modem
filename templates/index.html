@@ -10,18 +10,10 @@
 <body>
   <div class="container">
     <h1>Image Transmission Simulator</h1>
-    <form id="upload-form">
-      <label for="image-input">Select an image:</label>
-      <input type="file" id="image-input" accept="image/*" required>
-      
-      <label for="modulation-select">Select Modulation (M-QAM):</label>
-      <select id="modulation-select">
-        <option value="4">4-QAM</option>
-        <option value="16" selected>16-QAM</option>
-        <option value="64">64-QAM</option>
-      </select>
-
-      <button type="submit">Simulate Transmission</button>
+    <form action="/simulate" method="post" enctype="multipart/form-data">
+      <input type="file" name="image" />
+      <input type="text" name="modulation" placeholder="Enter modulation order" />
+      <button type="submit">Upload</button>
     </form>
 
     <div id="output-section" class="hidden">
