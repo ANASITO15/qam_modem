@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Transmission Simulator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+
+</head>
+<body>
+  <div class="container">
+    <h1>Image Transmission Simulator</h1>
+    <form id="upload-form">
+      <label for="image-input">Select an image:</label>
+      <input type="file" id="image-input" accept="image/*" required>
+      
+      <label for="modulation-select">Select Modulation (M-QAM):</label>
+      <select id="modulation-select">
+        <option value="4">4-QAM</option>
+        <option value="16" selected>16-QAM</option>
+        <option value="64">64-QAM</option>
+      </select>
+
+      <button type="submit">Simulate Transmission</button>
+    </form>
+
+    <div id="output-section" class="hidden">
+      <h2>Simulation Results</h2>
+      <canvas id="ber-plot"></canvas>
+      <h3>Received Image:</h3>
+      <img id="received-image" src="" alt="Output Image">
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f4f4;
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+  }
+  
+  label, select, input, button {
+    display: block;
+    margin: 10px auto;
+    font-size: 16px;
+  }
+  
+  button {
+    background-color: #0078D7;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #005fa3;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  img {
+    max-width: 100%;
+    margin-top: 20px;
+  }
+  
